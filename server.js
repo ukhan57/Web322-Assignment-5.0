@@ -10,11 +10,11 @@ const { read } = require("fs");
 const schema = mongoose.Schema;
 
 // MONGO DB
-// puu7YLdL10b6bccG - Password
+// pogoYc9BoWuK5bia - Password
 
-const registration = mongoose.createConnection("mongodb+srv://Admin:puu7YLdL10b6bccG@cluster0.qkcbfzy.mongodb.net/?retryWrites=true&w=majority");
-const blog = mongoose.createConnection("mongodb+srv://Admin:puu7YLdL10b6bccG@cluster0.qkcbfzy.mongodb.net/?retryWrites=true&w=majority");
-const article = mongoose.createConnection("mongodb+srv://Admin:puu7YLdL10b6bccG@cluster0.qkcbfzy.mongodb.net/?retryWrites=true&w=majority");
+const registration = mongoose.createConnection("mongodb+srv://Ukhan:pogoYc9BoWuK5bia@cluster0.qkcbfzy.mongodb.net/DB1?retryWrites=true&w=majority");
+const blog = mongoose.createConnection("mongodb+srv://Ukhan:pogoYc9BoWuK5bia@cluster0.qkcbfzy.mongodb.net/DB1?retryWrites=true&w=majority");
+const article = mongoose.createConnection("mongodb+srv://Ukhan:pogoYc9BoWuK5bia@cluster0.qkcbfzy.mongodb.net/DB1?retryWrites=true&w=majority");
 
 const registrationSchema = new schema({
     "fName": String,
@@ -87,8 +87,21 @@ app.post("/login", function(req,res){
         return;
     }
 
-    res.render("dashboard", { layout: false });
-
+    userInfo.findOne({ username: userdata.user, password: userdata.pass }, ["fname", "lname", "username"]).exec().then((data) => {
+        if (data) {
+            if (data.id == "6366c66a9afb45a8af4a82c4") {
+                res.render("login_Dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
+                return;
+            }
+            else {
+                res.render("loginuser_Dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
+                return;
+            }
+        } else {
+            res.render("login", { error: "Sorry, you entered the wrong username and/or password", layout: false });
+            return;
+        }
+    });
 });
 
 // //Router function for 'registration' page
