@@ -19,13 +19,11 @@ const article = mongoose.createConnection("mongodb+srv://Ukhan:pogoYc9BoWuK5bia@
 const registrationSchema = new schema({
     "fName": String,
     "lName": String,
-    "email": String,
     "username": {
         "type": String,
         "unique": true
     },
     "Address": String,
-    "city": String,
     "postalCode": String,
     "country": String,
     "password": {
@@ -89,12 +87,12 @@ app.post("/login", function(req,res){
 
     userInfo.findOne({ username: userdata.user, password: userdata.pass }, ["fname", "lname", "username"]).exec().then((data) => {
         if (data) {
-            if (data.id == "6366c66a9afb45a8af4a82c4") {
-                res.render("login_Dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
+            if (data.id == "636f1a169af1b92fb089bb55") {
+                res.render("admin_dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
                 return;
             }
             else {
-                res.render("loginuser_Dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
+                res.render("user_dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
                 return;
             }
         } else {
@@ -104,73 +102,89 @@ app.post("/login", function(req,res){
     });
 });
 
-// //Router function for 'registration' page
-// app.get("/registration", function(req,res){
-//     res.sendFile(path.join(__dirname, "/registration.html"));
-// });
+//Router function for 'registration' page
+app.get("/registration", function(req,res){
+    res.sendFile(path.join(__dirname, "/registration.html"));
+});
 
-// app.post("registration", function(req,res){
+app.post("registration", function(req,res){
 
-//     var userdata = {
-//         fName: req.body.fname,
-//         lName: req.body.lname,
-//         email: req.body.email,
-//         phonenumber: req.body.phonenumber,
-//         city: req.body.city,
-//         phonetest: /^\d{10}$/.test(req.body.phonenumber),
-//         Address: req.body.Address,
-//         postalCode: req.body.postalcode,
-//         postaltest: /^[AaBbCcEeGgHiJjKkLlMmNnPpRrSsTtVvXxYy]\d[A-Za-z] \d[A-Za-z]\d$/.test(req.body.postalcode),
-//         country: req.body.country,
-//         password: req.body.password,
-//         passwordtest: /^[0-9a-zA-Z]{6,12}$/.test(req.body.password),
-//         confirmpassword: req.body.confirmpassword,
-//     }
+    var userdata = {
+        fName: req.body.fName,
+        lName: req.body.lName,
+        username: req.body.username,
+        Address: req.body.Address,
+        postalCode: req.body.postalCode,
+        postaltest: /^[AaBbCcEeGgHiJjKkLlMmNnPpRrSsTtVvXxYy]\d[A-Za-z] \d[A-Za-z]\d$/.test(req.body.postalCode),
+        country: req.body.country,
+        password: req.body.password,
+        passwordtest: /^[0-9a-zA-Z]{6,12}$/.test(req.body.password),
+        confirmpassword: req.body.confirmpassword,
+    }
 
-//     var checkpass = function() {
-//         if (userdata.password == userdata.confirmpassword) {
-//             return true;
-//         }
-//         return false;
-//     }
+    var checkpass = function() {
+        if (userdata.password == userdata.confirmpassword) {
+            return true;
+        }
+        return false;
+    }
 
-//     userdata.checkpassword = checkpass;
+    userdata.checkpassword = checkpass;
 
-//     if (userdata.fname == "" ||
-//         userdata.lname == "" ||
-//         userdata.email == "" ||
-//         userdata.phonenumber == "" ||
-//         userdata.Address == "" ||
-//         userdata.city == "" ||
-//         userdata.postalcode == "" ||
-//         userdata.country == "" ||
-//         userdata.password == "" ||
-//         userdata.confirmpassword == "") {
+    if (userdata.fName == "" ||
+        userdata.lName == "" ||
+        userdata.email == "" ||
+        userdata.phonenumber == "" ||
+        userdata.Address == "" ||
+        userdata.city == "" ||
+        userdata.postalCode == "" ||
+        userdata.country == "" ||
+        userdata.password == "" ||
+        userdata.confirmpassword == "") 
 
-//         res.render("registration", { data: userdata, layout: false });
-//         return;
-//     }
+    {
+        res.render("registration", { data: userdata, layout: false });
+        return;
+    }
 
-//     if (!userdata.phonetest) {
-//         res.render("registration", { data: userdata, layout: false });
-//         return;
-//     }
-//     if (!userdata.postaltest) {
-//         res.render("registration", { data: userdata, layout: false });
-//         return;
-//     }
-//     if (!userdata.passwordtest) {
-//         res.render("registration", { data: userdata, layout: false });
-//         return;
-//     }
-//     if (!userdata.checkpassword) {
-//         res.render("registration", { data: userdata, layout: false });
-//         return;
-//     }
+    if (!userdata.phonetest) {
+        res.render("registration", { data: userdata, layout: false });
+        return;
+    }
+    if (!userdata.postaltest) {
+        res.render("registration", { data: userdata, layout: false });
+        return;
+    }
+    if (!userdata.passwordtest) {
+        res.render("registration", { data: userdata, layout: false });
+        return;
+    }
+    if (!userdata.checkpassword) {
+        res.render("registration", { data: userdata, layout: false });
+        return;
+    }
 
-    
-//     res.render("dashboard", { layout: false });
-// });
+    res.render("dashboard", { layout: false });
+
+    var accinfo = new userInfo({
+        fName: userdata.fName,
+        lName: userdata.lName,
+        email: userdata.email,
+        username: username,
+        Address: userdata.Address,
+        city: userdata.city,
+        postalCode: userdata.postalCode,
+        country: userdata.country,
+        password: userdata.password
+    }).save((e,data)=>{
+        if(e){
+            console.log(e);
+        } else {
+            console.log(data);
+        }
+    });
+
+});
 
 // start the server to listen on HTTP_PORT
 app.listen(HTTP_PORT, onHttpStart);
