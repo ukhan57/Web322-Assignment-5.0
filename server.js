@@ -23,13 +23,14 @@ const registrationSchema = new schema({
         "type": String,
         "unique": true
     },
+    "email": {
+        "type": String,
+        "unique": true,
+    },
     "Address": String,
     "postalCode": String,
     "country": String,
-    "password": {
-        "type": String,
-        "unique": true
-    }
+    "password": String
 });
 
 const blogSchema = new schema({
@@ -62,6 +63,15 @@ app.get("/", function(req,res){
     res.render("index", {layout : false});
 });
 
+app.get("/blog", function(req,res){
+    res.render("blog", {layout:false});
+});
+
+app.get("/read_more", function(req,res){
+    res.render("read_more", {layout:false});
+});
+
+
 app.get("/login", function(req,res){
     res.sendFile(path.join(__dirname, "/login.html"));
 });
@@ -80,26 +90,21 @@ app.post("/login", function(req,res){
         return;
     }
 
-    if (userdata.expression) {
+    else if (userdata.expression) {
         res.render("login", { data: userdata, layout: false });
         return;
     }
-
-    userInfo.findOne({ username: userdata.user, password: userdata.pass }, ["fname", "lname", "username"]).exec().then((data) => {
-        if (data) {
-            if (data.id == "636f1a169af1b92fb089bb55") {
-                res.render("admin_dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
-                return;
+    else {
+        userInfo.findOne({username: userdata.user, password: userdata.pass}, ["fName", "lName", "username"]).exec().then((data) =>{
+            if(data = "63707446d3e718b7d0f4a325"){
+                res.render("Admin_Dashboard", {fName: data.fName, lName: data.lName, username: data.username, layout: false});
             }
             else {
-                res.render("user_dashboard", { fname: data.fname, lname: data.lname, username: data.username, layout: false });
-                return;
+                res.render("User_Dashboard", {data: userdata, layout:false});
             }
-        } else {
-            res.render("login", { error: "Sorry, you entered the wrong username and/or password", layout: false });
-            return;
-        }
-    });
+        });
+    }
+    
 });
 
 //Router function for 'registration' page
@@ -107,12 +112,13 @@ app.get("/registration", function(req,res){
     res.sendFile(path.join(__dirname, "/registration.html"));
 });
 
-app.post("registration", function(req,res){
+app.post("/registration", function(req,res){
 
     var userdata = {
         fName: req.body.fName,
         lName: req.body.lName,
         username: req.body.username,
+        email: req.body.email,
         Address: req.body.Address,
         postalCode: req.body.postalCode,
         postaltest: /^[AaBbCcEeGgHiJjKkLlMmNnPpRrSsTtVvXxYy]\d[A-Za-z] \d[A-Za-z]\d$/.test(req.body.postalCode),
@@ -133,10 +139,9 @@ app.post("registration", function(req,res){
 
     if (userdata.fName == "" ||
         userdata.lName == "" ||
+        userdata.username == "" ||
         userdata.email == "" ||
-        userdata.phonenumber == "" ||
         userdata.Address == "" ||
-        userdata.city == "" ||
         userdata.postalCode == "" ||
         userdata.country == "" ||
         userdata.password == "" ||
@@ -147,32 +152,27 @@ app.post("registration", function(req,res){
         return;
     }
 
-    if (!userdata.phonetest) {
+    else if (!userdata.postaltest) {
         res.render("registration", { data: userdata, layout: false });
         return;
     }
-    if (!userdata.postaltest) {
+    else if (!userdata.passwordtest) {
         res.render("registration", { data: userdata, layout: false });
         return;
     }
-    if (!userdata.passwordtest) {
+    else if (!userdata.checkpassword) {
         res.render("registration", { data: userdata, layout: false });
         return;
+    } else {
+        res.render("dashboard", {layout:false});
     }
-    if (!userdata.checkpassword) {
-        res.render("registration", { data: userdata, layout: false });
-        return;
-    }
-
-    res.render("dashboard", { layout: false });
 
     var accinfo = new userInfo({
         fName: userdata.fName,
         lName: userdata.lName,
-        email: userdata.email,
-        username: username,
+        username: userdata.username,
+        email:userdata.email,
         Address: userdata.Address,
-        city: userdata.city,
         postalCode: userdata.postalCode,
         country: userdata.country,
         password: userdata.password
@@ -182,8 +182,11 @@ app.post("registration", function(req,res){
         } else {
             console.log(data);
         }
-    });
+    });    
+});
 
+app.get("", function(req,res){
+    res.status(404).send("Page not found!");
 });
 
 // start the server to listen on HTTP_PORT

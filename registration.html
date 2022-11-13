@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Web322 Assignment 3</title>
+    <title>Web322 Assignment 4</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/web_logo.png" />
     <!-- Bootstrap icons-->
@@ -50,170 +50,217 @@
         </div>
       </div>
     </nav>
-    <form
-      name="myForm"
-      action="/registration"
-      enctype="application/x-www-form-urlencoded"
-      method="post"
-    >
-      <section class="h-100 bg-dark">
-        <div class="container py-5 h-100">
-          <div
-            class="row d-flex justify-content-center align-items-center h-100"
-          >
-            <div class="col">
-              <div class="card card-registration my-4">
-                <div class="row g-0">
-                  <div class="col-xl-6 d-none d-xl-block">
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
-                      alt="Sample photo"
-                      class="img-fluid"
-                      style="
-                        border-top-left-radius: 0.25rem;
-                        border-bottom-left-radius: 0.25rem;
-                      "
-                    />
-                  </div>
-                  <div class="col-xl-6">
-                    <div class="card-body p-md-5 text-black">
-                      <h3 class="mb-5 text-uppercase">Become a member.</h3>
+    <section class="vh-100" style="background-color: #eee">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card text-black" style="border-radius: 25px">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                      Sign up
+                    </p>
 
-                      <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <label class="form-label" for="fName"
-                              >First name</label
-                            >
-                            <input
-                              type="text"
-                              id="fName"
-                              name="fName"
-                              placeholder="First Name"
-                              value=""
-                              autofocus=""
-                              class="form-control form-control-lg"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <label class="form-label" for="lName"
-                              >Last name</label
-                            >
-                            <input
-                              type="text"
-                              id="lName"
-                              name="lName"
-                              placeholder="Last Name"
-                              value=""
-                              autofocus=""
-                              class="form-control form-control-lg"
-                            />
-                          </div>
+                    <form
+                      name="myForm"
+                      action="/registration"
+                      enctype="application/x-www-form-urlencoded"
+                      method="post"
+                    >
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            name="fName"
+                            id="fName"
+                            placeholder=""
+                            value=""
+                            autofocus=""
+                            class="form-control"
+                          />
+                          <label class="form-label" for="fName"
+                            >*First Name</label
+                          >
                         </div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="username"
-                          >User name</label
-                        >
-                        <input
-                          type="text"
-                          id="username"
-                          name="username"
-                          placeholder=""
-                          value=""
-                          autofocus=""
-                          class="form-control form-control-lg"
-                        />
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            name="lName"
+                            id="lName"
+                            placeholder=""
+                            value=""
+                            autofocus=""
+                            class="form-control"
+                          />
+                          <label class="form-label" for="lName"
+                            >*Last Name</label
+                          >
+                        </div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="Address">Address</label>
-                        <input
-                          type="address"
-                          id="Address"
-                          name="Address"
-                          placeholder=""
-                          value=""
-                          autofocus=""
-                          class="form-control form-control-lg"
-                        />
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            class="form-control"
+                            value=""
+                            autofocus=""
+                          />
+                          <label class="form-label" for="username"
+                            >*Your Username</label
+                          >
+                        </div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="postalCode"
-                          >Postal Code</label
-                        >
-                        <input
-                          type="postalCode"
-                          id="postalCode"
-                          name="postalCode"
-                          placeholder=""
-                          value=""
-                          autofocus=""
-                          class="form-control form-control-lg"
-                        />
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="form-control"
+                            value=""
+                            autofocus=""
+                          />
+                          <label class="form-label" for="email"
+                            >*Your Email</label
+                          >
+                        </div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="country">Country</label>
-                        <input
-                          type="country"
-                          id="country"
-                          name="Country"
-                          placeholder=""
-                          value=""
-                          autofocus=""
-                          class="form-control form-control-lg"
-                        />
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            name="Address"
+                            id="Address"
+                            placeholder=""
+                            value=""
+                            autofocus=""
+                            class="form-control"
+                          />
+                          <label class="form-label" for="Address"
+                            >*Address</label
+                          >
+                        </div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Password</label>
-                        <input
-                          type="password"
-                          id="password"
-                          name="password"
-                          placeholder="Password"
-                          value=""
-                          autofocus=""
-                          class="form-control form-control-lg"
-                        />
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            name="postalCode"
+                            id="postalCode"
+                            placeholder=""
+                            value=""
+                            autofocus=""
+                            class="form-control"
+                          />
+                          <label class="form-label" for="postalCode"
+                            >*Postal Code</label
+                          >
+                      </div>
+                     </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="text"
+                            name="country"
+                            id="country"
+                            placeholder=""
+                            value=""
+                            autofocus=""
+                            class="form-control"
+                          />
+                          <label class="form-label" for="country"
+                            >*Country</label
+                          >
+                        </div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="confirmpassword"
-                          >Confirm Password</label
-                        >
-                        <input
-                          type="password"
-                          id="confirmpassword"
-                          name="confirmpassword"
-                          placeholder="Confirm"
-                          value=""
-                          autofocus=""
-                          class="form-control form-control-lg"
-                        />
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            value=""
+                          />
+                          <label class="form-label" for="password"
+                            >*Password</label
+                          >
+                        </div>
                       </div>
 
-                      <div class="d-flex justify-content-end pt-3">
-                        <button
-                          type="button"
-                          class="btn btn-warning btn-lg ms-2"
-                        >
-                          Submit form
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input
+                            type="password"
+                            id="confirmpassword"
+                            class="form-control"
+                            value=""
+                          />
+                          <label class="form-label" for="confirmpassword"
+                            >**Repeat your password</label
+                          >
+                        </div>
+                      </div>
+
+                      <div
+                        class="form-check d-flex justify-content-center mb-5"
+                      >
+                        <input
+                          class="form-check-input me-2"
+                          type="checkbox"
+                          value=""
+                          id="form2Example3c"
+                        />
+                        <label class="form-check-label" for="form2Example3">
+                          I agree all statements in
+                          <a href="#!">Terms of service</a>
+                        </label>
+                      </div>
+
+                      <div
+                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                      >
+                        <button type="submit" class="btn btn-primary btn-lg">
+                          Register
                         </button>
                       </div>
-                    </div>
+                    </form>
+                  </div>
+                  <div
+                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                  >
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      class="img-fluid"
+                      alt="Sample image"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </form>
+      </div>
+    </section>
   </body>
 </html>
