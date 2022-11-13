@@ -189,5 +189,8 @@ app.get("", function(req,res){
     res.status(404).send("Page not found!");
 });
 
+//Router to using images in .html giles
+app.use(express.static("static"));
+
 // start the server to listen on HTTP_PORT
 app.listen(HTTP_PORT, onHttpStart);
