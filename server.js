@@ -35,7 +35,7 @@ const registrationSchema = new schema({
 
 const blogSchema = new schema({
     "title": String,
-    "content": String
+    "date": String
 });
 
 const articleSchema = new schema({
@@ -183,6 +183,7 @@ app.post("/registration", function(req,res){
             console.log(data);
         }
     });    
+    res.render("dashboard", {layout:false});
 });
 
 app.get("", function(req,res){
