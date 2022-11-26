@@ -65,111 +65,28 @@
         </div>
       </div>
     </header>
-    <!-- Page content-->
-    <div class="container">
+    <div class="container mt-5">
       <div class="row">
-        <!-- Blog entries-->
-        <div class="col-lg-8">
-          <!-- Featured blog post-->
-          <div class="card mb-4">
-            <a href="/read_more"
-              ><img class="card-img-top" src="/anime_2.jpg" alt="..."
-            /></a>
-            <div class="card-body">
-              <div class="small text-muted">February 1, 2022</div>
-              <h2 class="card-title">Top 5 Best Anime Series</h2>
-              <p class="card-text">
-                Here is a list of anime's from multiple genres which are on my
-                top 5 list. Also I would recommend these anime to someone who is
-                new and wants to get started with it.
-              </p>
-              <a class="btn btn-primary" href="/read_more">Read more →</a>
+        {{#each title}}
+          <div class="col-sm-6">
+            <div class="card">
+              <img src="{{this.image}}" class="card-img-top"
+                alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{this.title}}</h5>
+                  <p class="card-text">{{this.date}}</p>
+                    <form action="/read_more" method="post">
+                      <input type="hidden" name="content" id="content" value="{{this.content}}">
+                      <input type="hidden" name="title" id="title" value="{{this.title}}">
+                      <button type="submit" class="btn btn-primary">Read More</button>
+                    </form>
+                </div>
             </div>
           </div>
-          <!-- Nested row for non-featured blog posts-->
-          <div class="row">
-            <div class="col-lg-6">
-              <!-- Blog post-->
-              <div class="card mb-4">
-                <a href=""
-                  ><img class="card-img-top" src="/blog2.jpg" alt="..."
-                /></a>
-                <div class="card-body">
-                  <div class="small text-muted">August 1, 2022</div>
-                  <h2 class="card-title h4">
-                    Personally liked spots in Downtown Toronto
-                  </h2>
-                  <p class="card-text">
-                    Being an international student in Canada, it is like a dream
-                    to explore the city of Toronto which has a lot to offer
-                    including the night life. Here are some places I have
-                    visited in Toronto and would like to share my views on them!
-                  </p>
-                  <a class="btn btn-primary" href="/error">Read more →</a>
-                </div>
-              </div>
-              <!-- Blog post-->
-              <div class="card mb-4">
-                <a href=""
-                  ><img
-                    class="card-img-top"
-                    src="/assassins_creed.jpg"
-                    alt="..."
-                /></a>
-                <div class="card-body">
-                  <div class="small text-muted">October 1, 2022</div>
-                  <h2 class="card-title h4">
-                    Top 5 upcoming games that will leave you amazed
-                  </h2>
-                  <p class="card-text">
-                    Here is a list of some upcoming games that I am eagerly
-                    looking forward to play. This list includes some big names
-                    as well and
-                  </p>
-                  <a class="btn btn-primary" href="/error">Read more →</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <!-- Blog post-->
-              <div class="card mb-4">
-                <a href="/read_more"
-                  ><img class="card-img-top" src="/anime_2.jpg" alt="..."
-                /></a>
-                <div class="card-body">
-                  <div class="small text-muted">February 1, 2022</div>
-                  <h2 class="card-title h4">Top 5 Best Anime Series</h2>
-                  <p class="card-text">
-                    Here is a list of anime's from multiple genres which are on
-                    my top 5 list. Also I would recommend these anime to someone
-                    who is new and wants to get started with it.
-                  </p>
-                  <a class="btn btn-primary" href="/read_more">Read more →</a>
-                </div>
-              </div>
-              <!-- Blog post-->
-              <div class="card mb-4">
-                <a href=""
-                  ><img class="card-img-top" src="/creative.png" alt="..."
-                /></a>
-                <div class="card-body">
-                  <div class="small text-muted">January 1, 2022</div>
-                  <h2 class="card-title h4">How to stay Creative</h2>
-                  <p class="card-text">
-                    It happens to the best of designers, all is going well until
-                    you reach that plateau, or that mental block where you cease
-                    to produce any creativity (For example as a freelance
-                    designer you can’t choose the best font for your project!)
-                    and think all is lost. This is a guide for people who need a
-                    bit of inspiration in how to stay creative. In the form of a
-                    tasty infographic, we have come up with 40 Ways to Stay
-                    Creative.
-                  </p>
-                  <a class="btn btn-primary" href="/error">Read more →</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
           <!-- Pagination-->
           <nav aria-label="Pagination">
             <hr class="my-0" />
@@ -203,7 +120,7 @@
               </li>
             </ul>
           </nav>
-        </div>
+     </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
           <!-- Search widget-->

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -20,7 +21,7 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container px-5">
-        <a class="navbar-brand" href="/">Umar Khan - 145270211</a>
+        <a class="navbar-brand" href="/admin">Admin Page</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -49,29 +50,42 @@
         </div>
       </div>
     </nav>
-    <!-- Header-->
-    <header class="bg-dark py-5">
-      <div class="container px-5">
-        <div class="row gx-5 justify-content-center">
-          <div class="col-lg-6">
-            <div class="text-center my-5">
-              <h1 class="display-5 fw-bolder text-white mb-2">Welcome to Web322
-                Assignment 4</h1>
-              <br /><br />
-              <p class="lead text-white-50 mb-4">Hi
-                {{fName}}
-                {{lName}}, this is the USER welcome page!</p>
-                <p class="lead text-white-50 mb-4">Click the button below to view the blog page or navigate the bar to reach your desired location.</p>
-                <a href="blog" class="text-white-50 fw-bold">Continue</a>
-              <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-              </div>
+    <section class="bg-light py-5">
+      <div class="container px-5 my-5 px-5">
+        <form name="myForm" action="/admin" enctype="application/x-www-form-urlencoded" method="post" class="">
+        <div class="container bg-light">
+            <div class="row text-center">
+                <div class="p-3 col-sm-12 col-md-12">
+                    <label for="title" class="form-label">Title: </label>
+                    <input type="text" name="title" id="title" placeholder="title" value="" autofocus="" required>
+                </div>
+                <div class="p-3 col-sm-12 col-md-12">
+                    <label for="date" class="form-label">Date: </label>
+                    <input type="text" name="date" id="date" placeholder="date" value="" autofocus="" required>
+                </div>
+                <div class="p-3 col-sm-12 col-md-12">
+                    <label for="content" class="form-label">Content: </label>
+                    <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
+                </div>
+                <div class="p-3 col-sm-12 col-md-12">
+                    <label for="img">Image:</label>
+                    <input list="images" id="img" name="img" required><br><br>
+                    <datalist id="images">
+                        <option value="nike_jordan1.jpg">
+                        <option value="shawarma.jpg">
+                        <option value="tim_hortons.jpg">
+                        <option value="gamin_laptop.jpg">
+                    </datalist>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
             </div>
-          </div>
         </div>
+        </div>
+        </form>
       </div>
-    </header>
-
-    <!-- Remove the container if you want to extend the Footer to full width. -->
+    </section>
+    
+     <!-- Remove the container if you want to extend the Footer to full width. -->
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
